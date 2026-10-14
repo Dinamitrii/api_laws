@@ -12,7 +12,7 @@ export async function POST(request:Request){
  else if(b.action==='detail'&&typeof b.uic==='string'&&/^(BG)?\d{9,13}$/i.test(b.uic))path='/api/companies/'+encodeURIComponent(b.uic)+'?with_data=true';else return json({error:'Невалидна заявка.'},400);
  const r=await fetch('https://api.companybook.bg'+path,{headers:{'X-API-Key':key,Accept:'application/json'},signal:AbortSignal.timeout(15000),redirect:'manual'});
  if(r.status>=300&&r.status<400)return json({error:'TheCompanyBook върна неочаквано пренасочване.'},502);
- if(!r.ok){const messages:Record<number,string>={400:'Невалидни параметри.',401:'API ключът е невалиден.',403:'Ключът няма достъп до тази справка.',404:'Фирмата не е намерена.',429:'Достигнат е лимитът за заявки. Опитай по-късно.'};return json({error:messages[r.status]||'TheCompanyBook временно не отговаря.'},r.status)}return json(await r.json());
+ if(!r.ok){const messages:Record<number,string>={400:'Невалидни параметри.',401:'API ключът е невалиден.',403:'Ключът няма достъп до тази справка.',404:'Фирмата не е намерена.',429:'Достигнат е лимитът за заявки. Опитай по-късно.'};return json({error:messages[r.status]||'TheCompanyBook временно не отговаря.'},r.status>=400&&r.status<500?r.status:502)}return json(await r.json());
  }catch(e){
  const err=e as {name?:string;cause?:{code?:string}};
  if(err.name==='SyntaxError')return json({error:'Невалиден JSON в заявката или отговора.'},400);
