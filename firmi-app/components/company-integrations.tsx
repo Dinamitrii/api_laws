@@ -1,7 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import MagistratCompanyCard, {type MagistratCompany} from './magistrat-company';
 
-type Company = { uic: string; name?: string; legalForm?: string; seat?: { address?: string }; managers?: unknown; partners?: unknown; soleOwner?: unknown; actualOwners?: unknown; capital?: string; lastChangedAt?: string };
+type Company = MagistratCompany;
+const scalar = (value: unknown) => typeof value === 'string' || typeof value === 'number' ? String(value) : '';
+const printable = (value: unknown) => value == null ? '' : typeof value === 'object' ? JSON.stringify(value, null, 2) : scalar(value);
 type VatResult = { vat: string; valid: boolean; name: string; address: string; requestDate: string; requestIdentifier: string };
 async function post<T>(path: string, body: object): Promise<T> {
   let response: Response;
@@ -23,7 +26,7 @@ export function managerNames(value: unknown): string {
   // Register JSON may wrap the person record; ignore unrelated scalar identifiers.
   return Object.values(entry).filter(v => v && typeof v === 'object').map(managerNames).filter(Boolean).join(', ');
 }
-export default function CompanyIntegrations({ uic, onCompany }: { uic: string; onCompany: (fields: Record<string, string>) => void }) {
+export default function CompanyIntegrations({ uic, onCompany }: { uic: string; onCompany: (fields: Record<string, string>, company: Company) => void }) {
   const revision = useRef(0);
   const [query, setQuery] = useState(uic), [vat, setVat] = useState(uic ? `BG${uic}` : '');
   const [company, setCompany] = useState<Company | null>(null), [result, setResult] = useState<VatResult | null>(null);
@@ -35,12 +38,12 @@ export default function CompanyIntegrations({ uic, onCompany }: { uic: string; o
   async function lookup(event: React.FormEvent) {
     event.preventDefault(); const current = revision.current; setCompanyBusy(true); setCompany(null); setCompanyError('');
     try { const data = await post<{ company: Company }>('/api/magistrat', { uic: query }); if (current === revision.current) setCompany(data.company); }
-    catch (error) { if (current === revision.current) setCompanyError((error as Error).message); } finally { setCompanyBusy(false); }
+    catch (error) { if (current === revision.current) setCompanyError((error as Error).message); } finally { if (current === revision.current) setCompanyBusy(false); }
   }
   async function validate(event: React.FormEvent) {
     event.preventDefault(); const current = revision.current; setVatBusy(true); setResult(null); setVatError('');
     try { const data = await post<VatResult>('/api/vies', { vat }); if (current === revision.current) setResult(data); }
-    catch (error) { if (current === revision.current) setVatError((error as Error).message); } finally { setVatBusy(false); }
+    catch (error) { if (current === revision.current) setVatError((error as Error).message); } finally { if (current === revision.current) setVatBusy(false); }
   }
   return <div className="grid integrations">
     <section className="panel">
@@ -58,10 +61,9 @@ export default function CompanyIntegrations({ uic, onCompany }: { uic: string; o
         <p>ЕИК {company.uic} · {company.legalForm || 'Няма посочена правна форма'}</p>
         <p>{company.seat?.address || 'Няма публикуван адрес'}</p>
         {managerNames(company.managers) && <p>Управители: {managerNames(company.managers)}</p>}
-        <button onClick={() => onCompany({ uic: company.uic, name: company.name || '', legalForm: company.legalForm || '', address: company.seat?.address || '', manager: managerNames(company.managers), email: '', phone: '' })}>Зареди във фирмените данни</button>
+        <button onClick={() => onCompany({ uic: company.uic, name: company.name || '', legalForm: company.legalForm || '', address: company.seat?.address || '', manager: managerNames(company.managers), email: '', phone: '', nameLatin: scalar(company.nameLatin), deedStatus: scalar(company.deedStatus), subjectOfActivity: scalar(company.subjectOfActivity), nace: scalar(company.nace), capital: scalar(company.capital), capitalPaidIn: scalar(company.capitalPaidIn), wayOfRepresentation: scalar(company.wayOfRepresentation), partners: printable(company.partners), soleOwner: printable(company.soleOwner), actualOwners: printable(company.actualOwners), lastChangedAt: scalar(company.lastChangedAt) }, company)}>Зареди във фирмените данни</button>
         <p className="hint">Заменя текущите фирмени данни. Имейлът и телефонът се допълват ръчно.</p>
-        <details><summary>Управление и собственост от регистъра</summary><pre>{JSON.stringify({ managers: company.managers, partners: company.partners, soleOwner: company.soleOwner, actualOwners: company.actualOwners }, null, 2)}</pre></details>
-        {company.lastChangedAt && <p className="hint">Последна промяна: {company.lastChangedAt}</p>}
+        <MagistratCompanyCard key={company.uic} company={company} />
       </div>}
       <p className="hint"><a href="https://magistrat.bg/developers" target="_blank" rel="noreferrer">Магистрат ↗</a> · Безплатното API ниво е за оценка и нетърговска употреба.</p>
     </section>
