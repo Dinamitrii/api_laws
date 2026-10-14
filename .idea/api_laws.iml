@@ -3,6 +3,9 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.sites-runtime" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.vinext" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.wrangler" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
