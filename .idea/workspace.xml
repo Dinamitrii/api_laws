@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/api_laws.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="init commit">
+      <change beforePath="$PROJECT_DIR$/.idea/api_laws.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api_laws.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/app/api/companybook/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/api/companybook/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/cloudflare-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/cloudflare-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,63 +24,67 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.001466178255074" />
-      <entry key="MS500" value="1.6418041112056545" />
-      <entry key="S2" value="4.189075858437349" />
-      <entry key="S5" value="5.945351193438905" />
-      <entry key="S10" value="8.248458326533875" />
-      <entry key="S30" value="14.1916871883528" />
-      <entry key="S60" value="17.40406819620698" />
-      <entry key="M2" value="19.49395419786219" />
-      <entry key="M5" value="20.942276110868804" />
-      <entry key="M10" value="21.461430989579732" />
-      <entry key="M15" value="21.63875898094323" />
-      <entry key="M30" value="21.818272349904632" />
-      <entry key="H1" value="21.908857567826914" />
-      <entry key="H2" value="21.95435890301619" />
-      <entry key="H4" value="21.977161952558337" />
-      <entry key="D1" value="21.99619122590791" />
-      <entry key="W1" value="21.99945582980351" />
+      <entry key="MS100" value="5.034888992498486E-84" />
+      <entry key="MS500" value="2.1897674300407462E-17" />
+      <entry key="S2" value="7.087310486178699E-5" />
+      <entry key="S5" value="0.038102623057111026" />
+      <entry key="S10" value="0.5698797869084185" />
+      <entry key="S30" value="5.22020107319879" />
+      <entry key="S60" value="11.995580047570098" />
+      <entry key="M2" value="23.810603748303777" />
+      <entry key="M5" value="42.62428023173047" />
+      <entry key="M10" value="56.09123699906518" />
+      <entry key="M15" value="63.20265052559047" />
+      <entry key="M30" value="72.95183466516336" />
+      <entry key="H1" value="79.29657780521065" />
+      <entry key="H2" value="82.9562836036776" />
+      <entry key="H4" value="84.92703332944765" />
+      <entry key="D1" value="86.64712611195321" />
+      <entry key="W1" value="86.9494049358847" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="3.1742257687019115E-50" />
-      <entry key="MS500" value="1.2598753028150117E-10" />
-      <entry key="S2" value="0.003350286062587771" />
-      <entry key="S5" value="0.10233701761185358" />
-      <entry key="S10" value="0.3199015748817964" />
-      <entry key="S30" value="0.6839202445693247" />
-      <entry key="S60" value="0.8269947064941375" />
-      <entry key="M2" value="0.9093924930931295" />
-      <entry key="M5" value="0.9627212231785162" />
-      <entry key="M10" value="0.9811835828113497" />
-      <entry key="M15" value="0.9874160494964561" />
-      <entry key="M30" value="0.9936881047373246" />
-      <entry key="H1" value="0.9968390565870323" />
-      <entry key="H2" value="0.9984182773702774" />
-      <entry key="H4" value="0.9992088257067575" />
-      <entry key="D1" value="0.9998680941275443" />
-      <entry key="W1" value="0.9999811552385933" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000000218" />
+      <entry key="S2" value="1.0003844277229343" />
+      <entry key="S5" value="1.0430457180883215" />
+      <entry key="S10" value="1.208344660825285" />
+      <entry key="S30" value="1.7424683623697712" />
+      <entry key="S60" value="2.317473900267529" />
+      <entry key="M2" value="2.924169415479241" />
+      <entry key="M5" value="3.531381222029688" />
+      <entry key="M10" value="3.9283518218409967" />
+      <entry key="M15" value="4.156023010615028" />
+      <entry key="M30" value="4.488857742398685" />
+      <entry key="H1" value="4.7158645621866615" />
+      <entry key="H2" value="4.849809043014746" />
+      <entry key="H4" value="4.9227359409362625" />
+      <entry key="D1" value="4.986808998058995" />
+      <entry key="W1" value="4.998107721658113" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.017883796162341967" />
-      <entry key="MS500" value="1.074114285258814" />
-      <entry key="S2" value="3.995818714767648" />
-      <entry key="S5" value="5.913278461615487" />
-      <entry key="S10" value="8.426268864182695" />
-      <entry key="S30" value="14.774654112618128" />
-      <entry key="S60" value="18.16826230890725" />
-      <entry key="M2" value="20.36817736372443" />
-      <entry key="M5" value="21.88991985465211" />
-      <entry key="M10" value="22.434897943869007" />
-      <entry key="M15" value="22.62099033757242" />
-      <entry key="M30" value="22.809347782322654" />
-      <entry key="H1" value="22.90438517104744" />
-      <entry key="H2" value="22.95212016990764" />
-      <entry key="H4" value="22.976041951513356" />
-      <entry key="D1" value="22.996004470874436" />
-      <entry key="W1" value="22.99942914835229" />
+      <entry key="MS100" value="5.537677160476896E-10" />
+      <entry key="MS500" value="0.014082038478297346" />
+      <entry key="S2" value="0.34474351036907924" />
+      <entry key="S5" value="0.7187822165664286" />
+      <entry key="S10" value="1.5378842265333823" />
+      <entry key="S30" value="6.831019180637912" />
+      <entry key="S60" value="14.2236029717784" />
+      <entry key="M2" value="26.676495682442482" />
+      <entry key="M5" value="46.12605258704515" />
+      <entry key="M10" value="60.00225126773984" />
+      <entry key="M15" value="67.34605190729337" />
+      <entry key="M30" value="77.43357259534129" />
+      <entry key="H1" value="84.00860015912362" />
+      <entry key="H2" value="87.80408744841971" />
+      <entry key="H4" value="89.84874367763975" />
+      <entry key="D1" value="91.63376080227951" />
+      <entry key="W1" value="91.94748767128957" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -88,172 +98,29 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dinamitrii/PycharmProjects/api_laws&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/dinamitrii/PycharmProjects/api_laws/firmi-app/node_modules/typescript/lib&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.Celery" factoryName="Python.Celery.App">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.Celery" factoryName="Python.Celery.Task">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docs" factoryName="Docutils task">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <option name="RUN_TOOL" value="" />
-      <option name="docutils_input_file" value="" />
-      <option name="docutils_output_file" value="" />
-      <option name="docutils_params" value="" />
-      <option name="docutils_task" value="" />
-      <option name="docutils_open_in_browser" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docs" factoryName="Sphinx task">
-      <module name="api_laws" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <option name="RUN_TOOL" value="" />
-      <option name="docutils_input_file" value="" />
-      <option name="docutils_output_file" value="" />
-      <option name="docutils_params" value="" />
-      <option name="docutils_task" value="" />
-      <option name="docutils_open_in_browser" value="false" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -270,22 +137,32 @@
       <updated>1791586623250</updated>
       <workItem from="1791586624263" duration="590000" />
       <workItem from="1791587225435" duration="619000" />
-      <workItem from="1791588564103" duration="1000000" />
+      <workItem from="1791588564103" duration="1066000" />
+      <workItem from="1791611849941" duration="34000" />
+      <workItem from="1791611893717" duration="1070000" />
+      <workItem from="1791916576111" duration="1099000" />
+      <workItem from="1791923630825" duration="371000" />
+      <workItem from="1791928402567" duration="599000" />
+      <workItem from="1791934429448" duration="202000" />
+      <workItem from="1791934704344" duration="4000" />
+      <workItem from="1791970808821" duration="580000" />
     </task>
+    <task id="LOCAL-00001" summary="init commit">
+      <option name="closed" value="true" />
+      <created>1791589717306</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1791589717306</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
   </component>
 </project>
