@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="init commit" />
+    <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="init commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +151,8 @@
       <workItem from="1791934429448" duration="202000" />
       <workItem from="1791934704344" duration="4000" />
       <workItem from="1791970808821" duration="3584000" />
-      <workItem from="1791989814356" duration="621000" />
+      <workItem from="1791989814356" duration="1444000" />
+      <workItem from="1792006816805" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />
@@ -181,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791973309703</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="init commit">
+      <option name="closed" value="true" />
+      <created>1791991840788</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1791991840788</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
