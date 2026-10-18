@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bg">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">{children}<a href="/auth" style={{ position: "fixed", right: 18, bottom: 18, zIndex: 50, background: "#176b51", color: "white", padding: "10px 16px", borderRadius: 10 }}>Профил / Изход</a></body>
     </html>
   );
 }

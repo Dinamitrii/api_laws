@@ -1,42 +1,49 @@
-"use client";
-import {useEffect,useState} from 'react';
-import CompanyIntegrations, {managerNames} from '../components/company-integrations';
-import MagistratSearch from '../components/magistrat-search';
-import {fillTemplate,unknownTokens} from '../lib/template';
-type Fields=Record<string,string>;
-type CompanyRow={uic:string;name:string;legalForm?:string};
-type CompanyData={companyName?:{name?:unknown};name?:unknown;uic?:unknown;legalForm?:unknown;seat?:Record<string,unknown>;address?:unknown;managers?:unknown;contacts?:{email?:unknown;phone?:unknown}};
-type CompanyResponse=CompanyData & {company?:CompanyData;history?:unknown[];daughters?:unknown[];results?:CompanyRow[];total?:string|number;error?:string};
-const labels:Fields={name:'Наименование',uic:'ЕИК',legalForm:'Правна форма',address:'Седалище и адрес',manager:'Представляващ',email:'Имейл',phone:'Телефон',nameLatin:'Име на латиница',deedStatus:'Статус на вписването',subjectOfActivity:'Предмет на дейност',nace:'Код на икономическа дейност',capital:'Капитал',capitalPaidIn:'Внесен капитал',wayOfRepresentation:'Начин на представляване',partners:'Съдружници',soleOwner:'Едноличен собственик',actualOwners:'Действителни собственици',lastChangedAt:'Последна промяна',date:'Дата'};
-const empty=()=>Object.fromEntries(Object.keys(labels).map(k=>[k,k==='date'?new Date().toLocaleDateString('bg-BG',{timeZone:'Europe/Sofia'}):'']));
-const initial='ФИРМЕНА КАРТА\n\nНаименование: {{name}}\nЕИК: {{uic}}\nПравна форма: {{legalForm}}\nСедалище и адрес: {{address}}\nПредставляващ: {{manager}}\nИмейл: {{email}}\nТелефон: {{phone}}\n\nДЕЙНОСТ И КАПИТАЛ\nПредмет на дейност: {{subjectOfActivity}}\nКод на икономическа дейност: {{nace}}\nКапитал: {{capital}}\nВнесен капитал: {{capitalPaidIn}}\n\nУПРАВЛЕНИЕ И СОБСТВЕНОСТ\nНачин на представляване: {{wayOfRepresentation}}\nСъдружници: {{partners}}\nЕдноличен собственик: {{soleOwner}}\nДействителни собственици: {{actualOwners}}\n\nСтатус на вписването: {{deedStatus}}\nПоследна промяна: {{lastChangedAt}}\nДата: {{date}}';
-const scalar=(v:unknown)=>typeof v==='string'||typeof v==='number'?String(v):'';
-const companyAddress=(seat:CompanyData['seat'])=>{
- if(!seat)return '';
- if(scalar(seat.address))return scalar(seat.address);
- const street=[scalar(seat.street),scalar(seat.streetNumber)].filter(Boolean).join(' ');
- return [scalar(seat.settlement),scalar(seat.area),street,...(['block','entrance','floor','apartment'] as const).map(k=>scalar(seat[k])?`${({block:'бл.',entrance:'вх.',floor:'ет.',apartment:'ап.'})[k]} ${scalar(seat[k])}`:''),scalar(seat.postCode),scalar(seat.country)].filter(Boolean).join(', ');
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Фирми — фирмени справки и документи | Predictorian',
+  description: 'Търсене на фирми, преглед на фирмени данни и попълване на текстови шаблони. Справки чрез TheCompanyBook и Магистрат след вход в профил.',
+  alternates: { canonical: 'https://firmi.predictorian.workers.dev/' },
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Фирми — от справката до документа',
+    description: 'Фирмени данни и шаблони за документи в едно работно пространство.',
+    url: 'https://firmi.predictorian.workers.dev/',
+    siteName: 'Фирми · Predictorian', locale: 'bg_BG', type: 'website',
+  },
 };
-export default function Home(){
- const [key,setKey]=useState(''),[settings,setSettings]=useState(false),[query,setQuery]=useState(''),[rows,setRows]=useState<CompanyRow[]>([]),[fields,setFields]=useState<Fields>(empty),[demo,setDemo]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[total,setTotal]=useState(''),[template,setTemplate]=useState(initial);
- const [fullCompany,setFullCompany]=useState<CompanyResponse|null>(null);
- const [dataSource,setDataSource]=useState('');
- const [searchSource,setSearchSource]=useState('companybook');
- const [serverKey,setServerKey]=useState(false);
- useEffect(()=>{let active=true;fetch('/api/companybook',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(active)setServerKey(Boolean(d&&typeof d==='object'&&'configured' in d&&d.configured===true))}).catch(()=>{});return()=>{active=false}},[]);
- const filled=fillTemplate(template,fields,labels);
- const unknown=unknownTokens(template,fields);
- async function api(body:object){
- let r:Response;
- try{r=await fetch('/api/companybook',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,key})})}
- catch{throw Error('Локалното приложение не отговаря. Стартирай го отново и презареди страницата.')}
- let d:CompanyResponse;
- try{d=await r.json() as CompanyResponse}catch{throw Error('Приложението върна неочакван отговор. Презареди страницата и опитай отново.')}
- if(!r.ok){if(d.error==='Липсва API ключ.')setSettings(true);throw Error(d.error||'Неуспешна заявка.')}return d
- }
- async function search(e:React.FormEvent){e.preventDefault();setError('');if(query.trim().length<3){setError('Въведи поне 3 символа.');return}setBusy(true);setRows([]);setTotal('');try{const d=await api({action:'search',query:query.trim()});setRows(d.results||[]);setTotal(String(d.total??0))}catch(e){setError((e as Error).message)}finally{setBusy(false)}}
- async function choose(row:CompanyRow){setBusy(true);setError('');try{const raw=await api({action:'detail',uic:row.uic});const c=raw.company||raw;setFields({...empty(),name:scalar(c.companyName?.name)||scalar(c.name),uic:scalar(c.uic),legalForm:scalar(c.legalForm),address:companyAddress(c.seat)||scalar(c.address),manager:managerNames(c.managers),email:scalar(c.contacts?.email),phone:scalar(c.contacts?.phone)});setFullCompany(raw);setDemo(false);setDataSource('TheCompanyBook')}catch(e){setError((e as Error).message)}finally{setBusy(false)}}
- function example(){setFields({...empty(),name:'Примерна фирма',uic:'000000000',legalForm:'ООД',address:'гр. София, ул. Примерна № 1',manager:'Иван Примеров',email:'office@example.com'});setFullCompany(null);setDemo(true);setDataSource('');setError('')}
- function download(){const url=URL.createObjectURL(new Blob(['\ufeff'+filled],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=`firma-${fields.uic||'danni'}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
- return <main><aside><div className="brand"><b className="logo">▥</b><div>Фирмено досие<small>ФИРМЕНИ СПРАВКИ</small></div></div><nav>⌕ &nbsp; Фирми и документи</nav><div className="sidebottom"><i/> {key?'API ключът е въведен':serverKey?'API ключът е настроен на сървъра':'Добави API ключ за справки'}<p>От фирмена справка до попълнен документ — на едно място.</p></div></aside><div className="workspace"><header><span>Работно пространство &nbsp; / &nbsp; Фирми и документи</span><button onClick={()=>setSettings(!settings)}>⚿ &nbsp; API настройки</button></header><section className="intro"><small>СПРАВКИ И ДОКУМЕНТИ</small><h1>Данните на фирмата.<br/><span>Готови за твоя документ.</span></h1><p>Намери фирма, провери данните и попълни своя шаблон.</p></section>{settings&&<section className="settings"><label htmlFor="apikey">Твоят TheCompanyBook API ключ (по избор)</label><input id="apikey" type="password" autoComplete="off" value={key} onChange={e=>setKey(e.target.value)} placeholder="Постави ключа от профила си"/><button onClick={()=>setSettings(false)}>Готово</button><button onClick={()=>setKey('')}>Изчисти ключа</button><p>Магистрат: ключът се настройва отделно на сървъра. VIES работи без ключ.</p><p>{serverKey?'Използва се ключът от настройките на сървъра. Въведеният тук ключ има предимство.':'Можеш да зададеш COMPANYBOOK_API_KEY в .env.local за автоматично използване.'} Въведеният тук ключ се пази само в паметта на страницата и се изчиства при презареждане. <a href="https://companybook.bg/api-docs" target="_blank" rel="noreferrer">Документация ↗</a></p></section>}<div className="steps"><span>① Намери фирма</span> → <span>② Провери данните</span> → <span>③ Попълни документ</span></div><section className="panel source-selector"><label htmlFor="search-source">Източник за търсене</label><select id="search-source" value={searchSource} onChange={e=>setSearchSource(e.target.value)}><option value="companybook">TheCompanyBook · фирми по име / ЕИК</option><option value="magistrat">Магистрат · избор на регистър и филтри</option></select></section>{searchSource==='magistrat'&&<MagistratSearch/>}<div className="grid"><section className="panel"><h2>⌕ &nbsp; Търсене на фирма</h2><p className="subtitle">По наименование или ЕИК</p>{searchSource==='companybook'?<><form onSubmit={search}><label htmlFor="query">Наименование или ЕИК</label><input id="query" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Напр. име на фирма или 123456789"/><button className="primary full" disabled={busy}>{busy?'Зареждане…':'Търси в TheCompanyBook →'}</button></form>{error&&<p className="error" role="alert">{error}</p>}{total!==''&&<p className="subtitle">Намерени: {total} · показани: {rows.length}{parseInt(total)>rows.length?' · уточни търсенето за още резултати':''}</p>}<div className="results">{rows.map(r=><button key={r.uic} className="result" disabled={busy} onClick={()=>choose(r)}><strong>{r.name}</strong><small>ЕИК {r.uic} · {r.legalForm} →</small></button>)}</div>{total==='0'&&<p>Няма намерени фирми. Опитай друго име или ЕИК.</p>}{total===''&&!busy&&<div className="empty"><div>▥</div><h3>Всяка справка започва тук</h3><p>Потърси фирма, за да използваш данните ѝ в документ.</p><button onClick={example}>Разгледай с примерни данни →</button></div>}<div className="source">✓ Данни от TheCompanyBook</div></>:<p>За търсене използвай избрания регистър по-горе. Фирмена карта по ЕИК се зарежда от секцията „Магистрат · фирмена справка“ по-долу.</p>}</section><section className="panel"><div className="heading"><h2>▥ &nbsp; Фирмени данни</h2><button onClick={()=>{setFields(empty());setFullCompany(null);setDemo(false);setDataSource('')}}>Изчисти</button></div><p className="subtitle">{demo?'Демонстрация · измислени данни':dataSource?`Данни от ${dataSource} · провери преди изтегляне`:'Провери и допълни данните преди изтегляне'}</p><div className="fields">{Object.keys(labels).map(k=><div className={['name','address','subjectOfActivity','partners','soleOwner','actualOwners'].includes(k)?'wide':''} key={k}><label htmlFor={k}>{labels[k]}</label>{['subjectOfActivity','partners','soleOwner','actualOwners'].includes(k)?<textarea id={k} value={fields[k]} placeholder="Няма публикувани данни" rows={3} onChange={e=>setFields({...fields,[k]:e.target.value})}/>:<input id={k} value={fields[k]} placeholder="Няма въведени данни" onChange={e=>setFields({...fields,[k]:e.target.value})}/>}</div>)}</div><p className="hint">Можеш да въведеш данни и ръчно. Липсващите полета са обозначени в документа.</p></section></div>{fullCompany&&<section className="panel full-company"><details><summary>Пълни данни от {dataSource}</summary><p className="hint">Оригиналната справка от източника. Ръчните промени в полетата по-горе не променят този отговор.</p><pre>{JSON.stringify(fullCompany,null,2)}</pre></details></section>}<CompanyIntegrations key={fields.uic} uic={fields.uic} onCompany={(data,company)=>{if(Object.entries(fields).some(([k,v])=>k!=='date'&&v.trim())&&!window.confirm('Текущите данни във фирмените полета ще бъдат заменени с данните от Магистрат. Продължаваш ли?'))return;setFields({...empty(),...data});setFullCompany({company} as CompanyResponse);setDemo(false);setDataSource('Магистрат');setError('')}}/><section className="panel document"><div className="heading"><div><h2>▤ &nbsp; Твоят документ</h2><p className="subtitle">Редактирай шаблона. Полетата се попълват автоматично.</p></div><div className="actions"><button onClick={()=>window.print()}>Печат / PDF</button><button className="primary" disabled={!fields.name&&!fields.uic} onClick={download}>↓ Изтегли TXT</button></div></div><div className="docgrid"><div><label htmlFor="upload">Зареди текстов шаблон (.txt)</label><input id="upload" type="file" accept=".txt,text/plain" onChange={async e=>{const f=e.target.files?.[0];if(f){if(f.size>1000000){setError('Шаблонът трябва да е под 1 MB.');return}setTemplate(await f.text())}}}/><label htmlFor="template">Шаблон</label><textarea id="template" value={template} onChange={e=>setTemplate(e.target.value)}/><div className="tokens">{Object.keys(labels).map(k=><button key={k} onClick={()=>setTemplate(template+` {{${k}}}`)}>{`{{${k}}}`}</button>)}</div>{unknown.length>0&&<p className="error">Непознати полета: {unknown.join(', ')}</p>}</div><div><div className="previewlabel">● &nbsp; ПРЕГЛЕД НА ПОПЪЛНЕНИЯ ДОКУМЕНТ</div><pre id="printdocument">{filled}</pre></div></div></section><footer>Фирмено досие <span>Шаблоните и данните се обработват в текущата сесия.</span></footer></div></main>
+
+export default function Landing() {
+  const features = [
+    ['01', 'Намери фирмата', 'Търси по име или ЕИК и прегледай данните от свързаните източници.'],
+    ['02', 'Подреди информацията', 'Работи с наименование, адрес, представители и контакти. Провери и допълни нужните полета.'],
+    ['03', 'Подготви документа', 'Използвай текстов шаблон, попълни го с фирмени данни и изтегли резултата или го отпечатай.'],
+  ];
+  return <div className="firmi-landing">
+    <style>{`
+      .firmi-landing{background:#f6f7f3;color:#18332a;min-height:100vh;font-family:Arial,system-ui,sans-serif}
+      .firmi-landing *{box-sizing:border-box}.firmi-landing a{text-decoration:none}
+      .firmi-landing .wrap{max-width:1120px;margin:auto;padding:0 26px}
+      .firmi-landing header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #dce3d9;gap:18px}
+      .firmi-landing .brand{font-size:23px;font-weight:800;color:#18332a}.firmi-landing .brand small{font-size:11px;display:block;letter-spacing:2px;margin-top:5px;color:#657c6d}
+      .firmi-landing nav{display:flex;align-items:center;gap:22px}.firmi-landing nav a{color:#18332a;font-size:15px}
+      .firmi-landing .hero{padding:90px 0 80px;max-width:850px}.firmi-landing .eyebrow{font-size:12px;letter-spacing:2px;font-weight:bold;color:#47745a}
+      .firmi-landing h1{font-size:clamp(40px,6vw,74px);line-height:1.07;letter-spacing:-2px;margin:23px 0}
+      .firmi-landing .lead{font-size:20px;line-height:1.7;color:#53665b;max-width:640px}.firmi-landing .cta{display:inline-block;background:#176b51;color:white!important;border-radius:9px;padding:15px 23px;font-weight:700;margin:17px 0}
+      .firmi-landing .sub{font-size:13px;color:#657c6d}.firmi-landing h2{font-size:30px;letter-spacing:-.7px}
+      .firmi-landing .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0 65px}
+      .firmi-landing article{background:white;border:1px solid #dce3d9;border-radius:14px;padding:27px}.firmi-landing article span{font:14px monospace;color:#47745a}.firmi-landing h3{font-size:21px;margin:25px 0 14px}.firmi-landing article p{font-size:16px;line-height:1.8;color:#53665b}
+      .firmi-landing .note{border-top:1px solid #dce3d9;padding:28px 0 50px;max-width:760px;font-size:16px;line-height:1.8;color:#53665b}
+      .firmi-landing footer{border-top:1px solid #dce3d9;padding:26px 0 75px;font-size:13px;color:#657c6d}
+      @media(max-width:700px){.firmi-landing .hero{padding:55px 0}.firmi-landing .cards{grid-template-columns:1fr}.firmi-landing nav{gap:14px}.firmi-landing nav a{font-size:13px}.firmi-landing .wrap{padding:0 20px}}
+    `}</style>
+    <div className="wrap">
+      <header><a className="brand" href="/">Фирми<small>BY PREDICTORIAN</small></a><nav aria-label="Основна навигация"><a href="#how">Как работи</a><a href="/app">Към приложението ↗</a></nav></header>
+      <main>
+        <section className="hero"><p className="eyebrow">ФИРМЕНИ ДАННИ · ТВОИТЕ ДОКУМЕНТИ</p><h1>От фирмената справка<br/>до готовия документ.</h1><p className="lead">Намери фирмата, прегледай информацията и попълни своя шаблон. Събери работата с фирмени данни и документи на едно място.</p><a className="cta" href="/app">Отвори Фирми →</a><p className="sub">Необходим е профил. Входът и регистрацията са в приложението.</p></section>
+        <section id="how" aria-labelledby="how-title"><h2 id="how-title">Три стъпки. Едно работно пространство.</h2><div className="cards">{features.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+        <section className="note"><h2>Информация с ясен източник</h2><p>Приложението използва интеграции с TheCompanyBook и Магистрат. Наличността на данните зависи от съответния източник и справка. Проверявай информацията преди използване в документи.</p><p>Фирмените справки и работното пространство са достъпни след вход в профил.</p></section>
+      </main><footer>Фирми · Predictorian — фирмени справки и шаблони за документи.</footer>
+    </div>
+  </div>;
 }

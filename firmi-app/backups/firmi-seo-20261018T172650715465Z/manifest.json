@@ -1,0 +1,54 @@
+[
+  {
+    "path": "app/page.tsx",
+    "existed": true
+  },
+  {
+    "path": "app/firmi-workspace.tsx",
+    "existed": false
+  },
+  {
+    "path": "app/app/page.tsx",
+    "existed": false
+  },
+  {
+    "path": "app/app/layout.tsx",
+    "existed": false
+  },
+  {
+    "path": "build/sites-worker.ts",
+    "existed": true
+  },
+  {
+    "path": "lib/account-auth.ts",
+    "existed": true
+  },
+  {
+    "path": "lib/account-page.ts",
+    "existed": true
+  },
+  {
+    "path": "package.json",
+    "existed": true
+  },
+  {
+    "path": "lib/firmi-seo.ts",
+    "existed": false
+  },
+  {
+    "path": "scripts/generate-firmi-sitemap.mjs",
+    "existed": false
+  },
+  {
+    "path": "seo-public-pages.json",
+    "existed": false
+  },
+  {
+    "path": "scripts/prepare-account-deploy.mjs",
+    "existed": true
+  },
+  {
+    "path": "lib/firmi-seo-manifest.ts",
+    "existed": false
+  }
+]

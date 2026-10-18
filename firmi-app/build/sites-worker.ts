@@ -1,9 +1,26 @@
+import { seoResponse } from "../lib/firmi-seo";
+import { accountGate } from "../lib/account-auth";
 import handler from "vinext/server/fetch-handler";
 import { runWithConnectorBinding } from "../lib/connector-context";
 import type { ConnectorBinding } from "../lib/connector-contract.mjs";
 
 export default {
-  fetch(request: Request, env: Cloudflare.Env, ctx: ExecutionContext<{ CONNECTORS?: ConnectorBinding }>) {
+  async fetch(request: Request, env: Cloudflare.Env, ctx: ExecutionContext<{ CONNECTORS?: ConnectorBinding }>) {
+    const pathname = new URL(request.url).pathname;
+    const assets = (env as Cloudflare.Env & {
+      ASSETS?: { fetch(request: Request): Promise<Response> };
+    }).ASSETS;
+    if (assets && (
+      pathname.startsWith("/_next/static/") ||
+      pathname === "/favicon.svg" ||
+      pathname === "/favicon.ico"
+    )) {
+      return assets.fetch(request);
+    }
+    const seo = seoResponse(request);
+    if (seo) return seo;
+    const denied = await accountGate(request, env, ctx);
+    if (denied) return denied;
     let binding = ctx.props?.CONNECTORS;
     // Local preview emulates the same request-scoped capability. This branch and
     // the auxiliary service binding are absent from production builds.
@@ -23,6 +40,15 @@ export default {
         },
       };
     }
-    return runWithConnectorBinding(binding, () => handler.fetch(request, env, ctx));
+    const response = await runWithConnectorBinding(binding, () => handler.fetch(request, env, ctx));
+    const headers = new Headers(response.headers);
+    if (/^\/(?:app|auth|api|billing)(?:\/|$)/.test(new URL(request.url).pathname)) {
+      headers.set("X-Robots-Tag", "noindex, nofollow");
+    }
+    if (!new URL(request.url).pathname.startsWith('/_next/static/')) {
+      headers.set('Cache-Control', 'private, no-store');
+      headers.set('CDN-Cache-Control', 'no-store');
+    }
+    return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
   },
 };

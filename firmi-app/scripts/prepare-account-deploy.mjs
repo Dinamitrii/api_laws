@@ -15,7 +15,7 @@ if (!fs.existsSync(configPath)) {
   process.exit(0);
 }
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-config.name = 'predictorian';
+config.name = 'firmi';
 delete config.legacy_env;
 config.assets = { ...config.assets, run_worker_first: true };
 config.vars = { ...config.vars, TURNSTILE_SITE_KEY: settings.siteKey };

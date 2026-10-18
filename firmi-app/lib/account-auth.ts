@@ -1,3 +1,4 @@
+import { isPublicSeoPage } from "./firmi-seo";
 import { accountPage } from './account-page';
 
 export interface AccountEnv {
@@ -48,6 +49,24 @@ async function limited(db: D1DatabaseSession, key: string, limit: number) {
 /** Runs before Vinext, so API calls and prerendered pages cannot bypass auth. */
 export async function accountGate(request: Request, env: AccountEnv, ctx: { waitUntil(promise: Promise<unknown>): void }): Promise<Response | null> {
   const url = new URL(request.url);
+  if (["GET", "HEAD"].includes(request.method) && isPublicSeoPage(url.pathname)) return null;
+
+
+  if (url.pathname === '/googlef65d0e60ad506076.html') {
+    return new Response(
+      request.method === 'HEAD'
+        ? null
+        : 'google-site-verification: googlef65d0e60ad506076.html',
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'no-store',
+        },
+      },
+    );
+  }
+
   if (url.pathname.startsWith('/_next/static/') || ['/favicon.svg', '/favicon.ico'].includes(url.pathname)) return null;
   const auth = url.pathname.startsWith('/api/auth/');
   if (!env.AUTH_DB || !env.AUTH_PEPPER || !env.TURNSTILE_SECRET_KEY || !env.TURNSTILE_SITE_KEY) {

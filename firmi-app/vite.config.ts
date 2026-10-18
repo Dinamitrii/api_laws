@@ -15,6 +15,9 @@ export default defineConfig({
     images: { optimizer: imagesOptimizer() },
 }),
     cloudflare({
+      config: {
+        main: "./build/sites-worker.ts",
+      },
       viteEnvironment: {
         name: "rsc",
         childEnvironments: ["ssr"],
