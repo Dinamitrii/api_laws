@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="init commit">
-      <change beforePath="$PROJECT_DIR$/.idea/api_laws.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api_laws.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/app/firmi-workspace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/firmi-workspace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/lib/account-auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/account-auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/lib/magistrat-request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/magistrat-request.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/scripts/prepare-account-deploy.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/scripts/prepare-account-deploy.mjs" afterDir="false" />
-    </list>
+    <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="init commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,6 +154,7 @@
       <workItem from="1792414172990" duration="1544000" />
       <workItem from="1792419586106" duration="623000" />
       <workItem from="1792437442203" duration="957000" />
+      <workItem from="1792791213494" duration="529000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />
