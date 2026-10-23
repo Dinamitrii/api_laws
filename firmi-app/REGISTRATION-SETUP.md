@@ -1,4 +1,4 @@
-# Отворена регистрация за Predictorian
+# Отворена регистрация за Firmi
 
 ## 1. Копиране
 
@@ -28,7 +28,7 @@ npx wrangler d1 create predictorian-users
 ## 3. Turnstile срещу ботове
 
 В https://dash.cloudflare.com/ отвори Turnstile → Add widget.
-Име: Predictorian. Hostname: `predictorian.predictorian.workers.dev`
+Име: Predictorian. Hostname: `predictorian.online`
 (без https:// и без път). Избери Managed.
 При друг домейн добави точния hostname и него.
 
@@ -46,7 +46,7 @@ npm run build
 
 Настройките се пазят в `predictorian-auth.json` (само публични ID).
 След всеки build скриптът настройва AUTH_DB, Turnstile Site key, името
-predictorian, твоя съществуващ KV ID и премахва неподдържания legacy_env.
+firmi, твоя съществуващ KV ID и премахва неподдържания legacy_env.
 Задава и assets.run_worker_first=true, за да не заобикалят статичните HTML
 страници проверката за вход. Запази файла и postbuild скрипта в Git.
 
@@ -54,14 +54,14 @@ predictorian, твоя съществуващ KV ID и премахва непо
 
 ```bash
 npx wrangler d1 execute predictorian-users --remote --config dist/server/wrangler.json --file migrations/0001_accounts.sql
-npx wrangler secret put TURNSTILE_SECRET_KEY --config dist/server/wrangler.json --name predictorian
+npx wrangler secret put TURNSTILE_SECRET_KEY --config dist/server/wrangler.json --name firmi
 ```
 
 На последната команда постави Secret key от Turnstile в интерактивния prompt.
 После създай случаен сървърен ключ за защита на паролите:
 
 ```bash
-openssl rand -hex 32 | npx wrangler secret put AUTH_PEPPER --config dist/server/wrangler.json --name predictorian
+openssl rand -hex 32 | npx wrangler secret put AUTH_PEPPER --config dist/server/wrangler.json --name firmi
 ```
 
 Не сменяй AUTH_PEPPER след започване на регистрациите — съществуващите пароли
@@ -71,12 +71,12 @@ openssl rand -hex 32 | npx wrangler secret put AUTH_PEPPER --config dist/server/
 ## 6. Деплой
 
 ```bash
-npx wrangler deploy --config dist/server/wrangler.json --name predictorian
+npx wrangler deploy --config dist/server/wrangler.json --name firmi
 ```
 
-При следващи промени е достатъчно `npm run deploy:predictorian`.
+При следващи промени е достатъчно `npm run deploy:firmi`.
 
-Отвори https://predictorian.predictorian.workers.dev — трябва да се отвори
+Отвори https://predictorian.online — трябва да се отвори
 страницата за вход. Избери Регистрация и създай профил. Провери справките,
 излез през „Профил / Изход“ и потвърди, че справките вече изискват вход.
 В инкогнито директна заявка към /api/companybook трябва да върне 401.

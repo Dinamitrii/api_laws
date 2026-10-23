@@ -1,0 +1,17 @@
+[project]
+name = "firmi-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "dinamitrii", email = "k_karaivanov@abv.bg" }
+]
+requires-python = ">=3.15"
+dependencies = []
+
+[project.scripts]
+firmi-app = "firmi_app:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"

@@ -42,7 +42,7 @@ test('registration, bot checks, session protection, logout and rate limits', asy
   const req = (path, body, headers = {}) => new Request('https://predictorian.test' + path, body === undefined ? { headers } : { method: 'POST', headers: { Origin: 'https://predictorian.test', 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(body) });
   const form = { email: 'USER@example.com', password: 'long-password-12345', turnstile: 'valid-token' };
   try {
-    assert.equal((await accountGate(req('/'), env, ctx)).status, 303);
+    assert.equal(await accountGate(req('/'), env, ctx), null);
     assert.equal((await accountGate(req('/api/companybook'), env, ctx)).status, 401);
     assert.equal(await accountGate(req('/_next/static/app.js'), {}, ctx), null);
     assert.equal((await accountGate(req('/api/auth/register', form, { Origin: 'https://evil.test' }), env, ctx)).status, 403);

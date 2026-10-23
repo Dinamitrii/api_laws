@@ -1,7 +1,9 @@
 type Body = Record<string, unknown>;
 const segment = (value: unknown, label: string) => {
-  if (typeof value !== 'string' || !value || value.length > 200 || value === '.' || value === '..' || /[\x00-\x1f/\\]/.test(value)) throw Error(`Невалиден ${label}.`);
-  return encodeURIComponent(value);
+  const id = typeof value === 'string' ? value : typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? String(value) : '';
+  if (!id || id.length > 200 || id === '.' || id === '..' || /[\x00-\x1f\x7f\\]/.test(id)) throw Error(`Невалиден ${label}.`);
+  // Registry IDs are opaque: a slash inside an ID must be encoded, not rejected.
+  return encodeURIComponent(id);
 };
 export function magistratPath(body: Body): string {
   const action = body.action ?? 'company';

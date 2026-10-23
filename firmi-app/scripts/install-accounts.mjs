@@ -35,6 +35,6 @@ const packagePath = root + 'package.json';
 const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 pkg.scripts ??= {};
 if (!pkg.scripts.postbuild?.includes('prepare-account-deploy.mjs')) pkg.scripts.postbuild = [pkg.scripts.postbuild, 'node scripts/prepare-account-deploy.mjs'].filter(Boolean).join(' && ');
-pkg.scripts['deploy:predictorian'] = 'npm run build && wrangler deploy --config dist/server/wrangler.json --name predictorian';
+pkg.scripts['deploy:firmi'] = 'npm run build && npx wrangler deploy --config dist/server/wrangler.json --name firmi';
 fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2) + '\n');
-console.log('Регистрацията е добавена. Следвай REGISTRATION-SETUP.md за D1 и Turnstile.');
+console.log('Регистрацията за firmi е добавена. Следвай REGISTRATION-SETUP.md за D1 и Turnstile.');

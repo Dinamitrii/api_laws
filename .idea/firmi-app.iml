@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.system.id="pyproject.toml" type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/firmi-app">
+      <sourceFolder url="file://$MODULE_DIR$/firmi-app/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.sites-runtime" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.vinext" />
+      <excludeFolder url="file://$MODULE_DIR$/firmi-app/.wrangler" />
+    </content>
+    <orderEntry type="jdk" jdkName="~/PycharmProjects/api_laws/firmi-app/.venv" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

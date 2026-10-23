@@ -18,6 +18,10 @@ const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 config.name = 'firmi';
 delete config.legacy_env;
 config.assets = { ...config.assets, run_worker_first: true };
+config.routes = [
+  ...(config.routes ?? []).filter((route) => !(route?.custom_domain === true && route.pattern === 'predictorian.online')),
+  { pattern: 'predictorian.online', custom_domain: true },
+];
 config.vars = { ...config.vars, TURNSTILE_SITE_KEY: settings.siteKey };
 config.d1_databases = (config.d1_databases ?? []).filter(item => item.binding !== 'AUTH_DB');
 config.d1_databases.push({ binding: 'AUTH_DB', database_name: 'predictorian-users', database_id: settings.databaseId, migrations_dir: '../../migrations' });
@@ -26,4 +30,16 @@ for (const binding of config.kv_namespaces ?? []) {
   if (binding.binding === 'VINEXT_KV_CACHE' || binding.id === '<your-kv-namespace-id>') binding.id = '2ef4c2601101466e9734713e309aaf6b';
 }
 fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n');
-console.log('Predictorian: D1, Turnstile, KV и защитата на страниците са настроени за деплой.');
+
+// The public landing page is static HTML with no interactive client components.
+// Keep the /app route hydrated, but omit Vinext's client runtime from `/`.
+// Preserve the explicitly tagged Google Analytics scripts when configured.
+const landingPath = root + 'dist/server/prerendered-routes/index.html';
+if (fs.existsSync(landingPath)) {
+  const html = fs.readFileSync(landingPath, 'utf8');
+  const staticHtml = html
+    .replace(/<script\b(?![^>]*\bdata-firmi-google-tag\b)[^>]*>[\s\S]*?<\/script\s*>/gi, '')
+    .replace(/<link\b(?=[^>]*\b(?:rel=["']modulepreload["']|as=["']script["']))[^>]*>/gi, '');
+  if (staticHtml !== html) fs.writeFileSync(landingPath, staticHtml);
+}
+console.log('Firmi: D1, Turnstile, KV и защитата на страниците са настроени за деплой.');

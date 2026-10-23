@@ -1,7 +1,10 @@
+import { adminAccess, type AdminEnv } from './admin-access';
+import { publicDiscovery } from './public-discovery';
 import { isPublicSeoPage } from "./firmi-seo";
 import { accountPage } from './account-page';
+import { billingGate, stripeWebhook, type BillingEnv } from './stripe-billing';
 
-export interface AccountEnv {
+export interface AccountEnv extends BillingEnv, AdminEnv {
   AUTH_DB?: D1Database;
   TURNSTILE_SITE_KEY?: string;
   TURNSTILE_SECRET_KEY?: string;
@@ -49,6 +52,8 @@ async function limited(db: D1DatabaseSession, key: string, limit: number) {
 /** Runs before Vinext, so API calls and prerendered pages cannot bypass auth. */
 export async function accountGate(request: Request, env: AccountEnv, ctx: { waitUntil(promise: Promise<unknown>): void }): Promise<Response | null> {
   const url = new URL(request.url);
+  const discovery = publicDiscovery(request);
+  if (discovery) return discovery;
   if (["GET", "HEAD"].includes(request.method) && isPublicSeoPage(url.pathname)) return null;
 
 
@@ -68,6 +73,7 @@ export async function accountGate(request: Request, env: AccountEnv, ctx: { wait
   }
 
   if (url.pathname.startsWith('/_next/static/') || ['/favicon.svg', '/favicon.ico'].includes(url.pathname)) return null;
+  if (url.pathname === '/api/stripe/webhook') return stripeWebhook(request, env);
   const auth = url.pathname.startsWith('/api/auth/');
   if (!env.AUTH_DB || !env.AUTH_PEPPER || !env.TURNSTILE_SECRET_KEY || !env.TURNSTILE_SITE_KEY) {
     return auth ? reply({ error: 'Регистрацията още се настройва. Опитай по-късно.' }, 503)
@@ -147,7 +153,7 @@ export async function accountGate(request: Request, env: AccountEnv, ctx: { wait
       return reply({ ok: true }, 200, { 'Set-Cookie': cookie(session) });
     }
     const token = sessionToken(request);
-    const session = /^[a-f0-9]{64}$/.test(token) ? await db.prepare('SELECT user_id FROM auth_sessions WHERE token_hash=? AND expires_at>?').bind(await digest(token), Math.floor(Date.now() / 1000)).first() : null;
+    const session = /^[a-f0-9]{64}$/.test(token) ? await db.prepare('SELECT user_id FROM auth_sessions WHERE token_hash=? AND expires_at>?').bind(await digest(token), Math.floor(Date.now() / 1000)).first<{user_id: string}>() : null;
     if (url.pathname === '/auth') return new Response(accountPage(env.TURNSTILE_SITE_KEY, Boolean(session)), { headers: {
       'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'X-Frame-Options': 'DENY',
@@ -155,7 +161,9 @@ export async function accountGate(request: Request, env: AccountEnv, ctx: { wait
     } });
     if (!session) return url.pathname.startsWith('/api/') ? reply({ error: 'Влез в профила си, за да използваш справките.' }, 401)
       : new Response(null, { status: 303, headers: { Location: '/auth', 'Cache-Control': 'no-store' } });
-    return null;
+    const adminResult = await adminAccess(request, env, db, session.user_id);
+    if (adminResult.handled) return adminResult.response;
+    return await billingGate(request, env, db, session.user_id);
   } catch {
     return reply({ error: 'Услугата за вход временно не е достъпна. Опитай по-късно.' }, 503);
   }

@@ -1,5 +1,19 @@
 {
+  "siteUrl": "https://predictorian.online",
   "paths": [
     "/"
+  ],
+  "pathMetadata": {
+    "/": {
+      "changefreq": "weekly",
+      "priority": 1.0
+    }
+  },
+  "disallowPaths": [
+    "/admin",
+    "/api",
+    "/app",
+    "/auth",
+    "/billing"
   ]
 }
