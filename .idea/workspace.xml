@@ -6,21 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="commit v2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/app/firmi-workspace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/firmi-workspace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/lib/account-page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/account-page.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/lib/admin-access.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/admin-access.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/lib/firmi-seo-manifest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/firmi-seo-manifest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/lib/stripe-billing.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/stripe-billing.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firmi-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/apple-touch-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/apple-touch-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/android-chrome-192x192.png" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/android-chrome-192x192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/android-chrome-512x512.png" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/android-chrome-512x512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/favicon-16x16.png" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/favicon-16x16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/favicon-32x32.png" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/favicon-32x32.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/site.webmanifest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/scripts/prepare-account-deploy.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/scripts/prepare-account-deploy.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/seo-public-pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/seo-public-pages.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firmi-app/wrangler.jsonc" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/wrangler.jsonc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firmi-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +122,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dinamitrii/PycharmProjects/api_laws&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dinamitrii/PycharmProjects/api_laws/firmi-app/public&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -140,6 +133,11 @@
     &quot;ts.external.directory.path&quot;: &quot;/home/dinamitrii/PycharmProjects/api_laws/firmi-app/node_modules/typescript/lib&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/firmi-app/public" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -177,7 +175,8 @@
       <workItem from="1792883085851" duration="45000" />
       <workItem from="1793055320152" duration="10000" />
       <workItem from="1793059139206" duration="2472000" />
-      <workItem from="1793066725354" duration="706000" />
+      <workItem from="1793066725354" duration="2701000" />
+      <workItem from="1793077131695" duration="472000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />
@@ -283,11 +282,33 @@
       <option name="project" value="LOCAL" />
       <updated>1792883113627</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="commit v2">
+      <option name="closed" value="true" />
+      <created>1793067512663</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1793067512663</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.vars" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
