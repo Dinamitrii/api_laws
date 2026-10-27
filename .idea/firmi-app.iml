@@ -10,5 +10,6 @@
     </content>
     <orderEntry type="jdk" jdkName="~/PycharmProjects/api_laws/firmi-app/.venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="poper" level="application" />
   </component>
 </module>
