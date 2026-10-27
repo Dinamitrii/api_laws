@@ -24,8 +24,15 @@
 		},
 		{
 			"binding": "predictorian",
-			"id": "2ef4c2601101466e9734713e309aaf6b",
-			"remote": true
+			"id": "2ef4c2601101466e9734713e309aaf6b"
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "AUTH_DB",
+			"database_name": "predictorian-users",
+			"database_id": "9accc34a-7dea-4572-abe5-c0922583217d",
+			"migrations_dir": "migrations"
 		}
 	]
 }

@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26dac043-f7cc-4cc4-97c6-619e1aa7b502" name="Changes" comment="commit v2">
-      <change beforePath="$PROJECT_DIR$/predictorian.online_2026-10-24_15-51-26.report.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/app/firmi-workspace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/firmi-workspace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/lib/account-page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/account-page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/lib/admin-access.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/admin-access.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/lib/firmi-seo-manifest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/firmi-seo-manifest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/lib/stripe-billing.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/lib/stripe-billing.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/apple-touch-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/apple-touch-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/favicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/public/favicon/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/public/favicon/site.webmanifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/scripts/prepare-account-deploy.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/scripts/prepare-account-deploy.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/seo-public-pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/seo-public-pages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/wrangler.jsonc" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/wrangler.jsonc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firmi-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/firmi-app/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +175,9 @@
       <workItem from="1792791213494" duration="1074000" />
       <workItem from="1792881443716" duration="213000" />
       <workItem from="1792883085851" duration="45000" />
+      <workItem from="1793055320152" duration="10000" />
+      <workItem from="1793059139206" duration="2472000" />
+      <workItem from="1793066725354" duration="706000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />

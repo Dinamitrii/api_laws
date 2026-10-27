@@ -16,5 +16,5 @@ for(const name of ['login','register'])document.getElementById(name).onclick=fun
 document.getElementById('form').onsubmit=async function(event){event.preventDefault();message.textContent='';if(busy||!token)return;if(mode==='register'&&document.getElementById('password').value!==document.getElementById('confirm').value){message.textContent='Паролите не съвпадат.';return}busy=true;submit.disabled=true;try{const response=await fetch('/api/auth/'+mode,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value,password:document.getElementById('password').value,turnstile:token,website:document.getElementById('website').value})});const data=await response.json();if(!response.ok)throw Error(data.error||'Неуспешна заявка.');location.replace('/app')}catch(e){message.textContent=e.message;busy=false;render()}};
 const script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileReady&render=explicit';script.async=true;script.onerror=function(){message.textContent='Проверката срещу ботове не се зареди. Презареди страницата.'};document.head.appendChild(script);
 `}
-</script></body></html>`;
+</script><footer style="text-align:center;padding:20px 16px;font-size:13px;color:#4b6254">© 2026 Vesteros BG Ltd.</footer></body></html>`;
 }

@@ -69,7 +69,7 @@ const statusText=document.getElementById('status'),pay=document.getElementById('
 async function check(){try{const r=await fetch('/api/billing/status');const d=await r.json();if(!r.ok)throw Error(d.error||'Неуспешна проверка.');statusText.textContent=d.paid?'Плащането е потвърдено. Достъпът е активен.':d.configured?'Няма потвърдено плащане. Ако току-що плати, провери отново след няколко секунди.':'Плащанията още се настройват.';pay.disabled=d.paid||!d.configured;}catch(e){statusText.textContent=e.message;}}
 pay.onclick=async()=>{pay.disabled=true;try{const r=await fetch('/api/billing/checkout',{method:'POST'});const d=await r.json();if(!r.ok)throw Error(d.error||'Неуспешно плащане.');location.assign(d.url);}catch(e){statusText.textContent=e.message;pay.disabled=false;}};
 document.getElementById('check').onclick=check;check();
-</script></html>`;
+</script><footer style="text-align:center;padding:20px 16px;font-size:13px;color:#4b6254">© 2026 Vesteros BG Ltd.</footer></html>`;
 export async function billingGate(request: Request, env: BillingEnv, db: D1DatabaseSession, userId: string): Promise<Response|null> {
   const url = new URL(request.url);
   const configured = Boolean(env.STRIPE_SECRET_KEY && env.STRIPE_WEBHOOK_SECRET && env.STRIPE_PRICE_ID && env.STRIPE_APP_URL);
