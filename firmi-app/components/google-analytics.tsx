@@ -3,7 +3,7 @@
 const configuredMeasurementId = process.env.GOOGLE_ANALYTICS_GTAG?.trim();
 const measurementId = /^G-[A-Z0-9]+$/i.test(configuredMeasurementId ?? "")
   ? configuredMeasurementId
-  : "G-EEEPRGM118";
+  : "G-9NFC52PPLE";
 
 export function GoogleAnalytics() {
   return (
