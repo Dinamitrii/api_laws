@@ -21,11 +21,19 @@ config.assets = { ...config.assets, run_worker_first: true };
 // The custom domain comes from siteUrl in seo-public-pages.json, so the sitemap,
 // robots.txt and the Worker route can never point at different domains.
 const seoConfig = JSON.parse(fs.readFileSync(root + 'seo-public-pages.json', 'utf8'));
-const domain = new URL(seoConfig.siteUrl).hostname;
+const primarySiteUrl = seoConfig.siteUrl;
+const siteUrls = (Array.isArray(seoConfig.siteUrls) && seoConfig.siteUrls.length > 0
+  ? seoConfig.siteUrls
+  : [primarySiteUrl]
+).map((value) => {
+  const parsed = new URL(value);
+  return parsed.hostname;
+});
 config.routes = [
-  // Drop any earlier custom domain (e.g. from a stale dist/) so only siteUrl's domain remains.
+  // Drop any earlier custom domain (e.g. from a stale dist/) so only the project's
+  // published domains remain.
   ...(config.routes ?? []).filter((route) => route?.custom_domain !== true),
-  { pattern: domain, custom_domain: true },
+  ...siteUrls.map((domain) => ({ pattern: domain, custom_domain: true })),
 ];
 config.vars = { ...config.vars, TURNSTILE_SITE_KEY: settings.siteKey };
 config.d1_databases = (config.d1_databases ?? []).filter(item => item.binding !== 'AUTH_DB');

@@ -1,5 +1,9 @@
 {
   "siteUrl": "https://firmi.online",
+  "siteUrls": [
+    "https://firmi.online",
+    "https://predictorian.online"
+  ],
   "paths": [
     "/"
   ],
