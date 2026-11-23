@@ -92,7 +92,11 @@ function xmlEscape(value) {
 
 if (!Array.isArray(config.paths) || !config.paths.includes('/')) fail('paths must be an array including /.');
 if (!Array.isArray(config.disallowPaths) || config.disallowPaths.length === 0) fail('disallowPaths must be a non-empty array.');
-const siteUrl = normalizeSiteUrl(config.siteUrl);
+const siteUrls = (Array.isArray(config.siteUrls) && config.siteUrls.length > 0
+  ? config.siteUrls
+  : [config.siteUrl]
+).map((value) => normalizeSiteUrl(value));
+const siteUrl = siteUrls[0];
 const appDir = ['app', 'src/app'].map((candidate) => path.join(root, candidate)).find((candidate) => fs.existsSync(candidate));
 if (!appDir) fail('Could not find app/ or src/app/.');
 
@@ -115,15 +119,17 @@ for (const route of routes) {
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...routes.slice().sort().map((route) => {
-    const metadata = pathMetadata[route] ?? {};
-    if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
-      fail(`pathMetadata entry must be an object: ${route}`);
-    }
-    const changefreq = validateChangefreq(metadata.changefreq ?? 'weekly', `pathMetadata.${route}.changefreq`);
-    const priority = validatePriority(metadata.priority ?? 0.5, `pathMetadata.${route}.priority`);
-    return `  <url><loc>${xmlEscape(`${siteUrl}${route === '/' ? '/' : route}`)}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
-  }),
+  ...routes.slice().sort().flatMap((route) =>
+    siteUrls.map((siteUrl) => {
+      const metadata = pathMetadata[route] ?? {};
+      if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
+        fail(`pathMetadata entry must be an object: ${route}`);
+      }
+      const changefreq = validateChangefreq(metadata.changefreq ?? 'weekly', `pathMetadata.${route}.changefreq`);
+      const priority = validatePriority(metadata.priority ?? 0.5, `pathMetadata.${route}.priority`);
+      return `  <url><loc>${xmlEscape(`${siteUrl}${route === '/' ? '/' : route}`)}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
+    })
+  ),
   '</urlset>',
   '',
 ].join('\n');

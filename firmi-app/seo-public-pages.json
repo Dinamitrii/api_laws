@@ -5,12 +5,17 @@
     "https://predictorian.online"
   ],
   "paths": [
-    "/"
+    "/",
+    "/disclosure"
   ],
   "pathMetadata": {
     "/": {
       "changefreq": "weekly",
       "priority": 1.0
+    },
+    "/disclosure": {
+      "changefreq": "monthly",
+      "priority": 0.8
     }
   },
   "disallowPaths": [

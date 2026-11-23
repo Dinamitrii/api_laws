@@ -28,7 +28,7 @@ export default function Landing() {
       .firmi-landing .wrap{max-width:1120px;margin:auto;padding:0 26px}
       .firmi-landing header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #dce3d9;gap:18px}
       .firmi-landing .brand{font-size:23px;font-weight:800;color:#18332a}.firmi-landing .brand small{font-size:11px;display:block;letter-spacing:2px;margin-top:5px;color:#4b6254}
-      .firmi-landing nav{display:flex;align-items:center;gap:22px}.firmi-landing nav a{color:#18332a;font-size:15px}
+      .firmi-landing nav{display:flex;align-items:center;gap:22px}.firmi-landing nav a{color:#18332a;font-size:15px}.firmi-landing nav a[href="/disclosure"]{font-weight:600}
       .firmi-landing .hero{padding:90px 0 80px;max-width:850px}.firmi-landing .eyebrow{font-size:12px;letter-spacing:2px;font-weight:bold;color:#315f46}
       .firmi-landing h1{font-size:clamp(40px,6vw,74px);line-height:1.07;letter-spacing:-2px;margin:23px 0}
       .firmi-landing .lead{font-size:20px;line-height:1.7;color:#43584d;max-width:640px}.firmi-landing .cta{display:inline-block;background:#176b51;color:white!important;border-radius:9px;padding:15px 23px;font-weight:700;margin:17px 0}
@@ -40,7 +40,7 @@ export default function Landing() {
       @media(max-width:700px){.firmi-landing .hero{padding:55px 0}.firmi-landing .cards{grid-template-columns:1fr}.firmi-landing nav{gap:14px}.firmi-landing nav a{font-size:13px}.firmi-landing .wrap{padding:0 20px}}
     `}</style>
     <div className="wrap">
-      <header><Link href="/admin">Администратор</Link><Link href="/billing">Плащания</Link><Link className="brand" href="/">Фирми<small>BY PREDICTORIAN</small></Link><nav aria-label="Основна навигация"><a href="#how">Как работи</a><Link href="/app">Към приложението ↗</Link></nav></header>
+      <header><Link href="/admin">Администратор</Link><Link href="/billing">Плащания</Link><Link className="brand" href="/">Фирми<small>BY PREDICTORIAN</small></Link><nav aria-label="Основна навигация"><a href="#how">Как работи</a><Link href="/app">Към приложението ↗</Link><a href="/disclosure">Условия и лимити</a></nav></header>
       <main>
         <section className="hero"><p className="eyebrow">ФИРМЕНИ ДАННИ · ТВОИТЕ ДОКУМЕНТИ</p><h1>От фирмената справка<br/>до готовия документ.</h1><p className="lead">Намери фирмата, прегледай информацията и попълни своя шаблон. Събери работата с фирмени данни и документи на едно място.</p><Link className="cta" href="/app">Отвори Фирми →</Link><p className="sub">Необходим е профил. Входът и регистрацията са в приложението.</p></section>
         <section id="how" aria-labelledby="how-title"><h2 id="how-title">Три стъпки. Едно работно пространство.</h2><div className="cards">{features.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
