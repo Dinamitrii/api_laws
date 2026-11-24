@@ -1,7 +1,17 @@
-import { PUBLIC_PATHS, ROBOTS_TXT, SITEMAP_XML } from './firmi-seo-manifest';
+import { PUBLIC_PATHS, ROBOTS_TXT, SITEMAP_PATHS } from './firmi-seo-manifest';
+
 export function isPublicSeoPage(pathname: string): boolean {
   return PUBLIC_PATHS.includes(pathname);
 }
+
+function buildSitemap(origin: string): string {
+  const urls = SITEMAP_PATHS.map((entry) => {
+    const loc = `${origin}${entry.path === '/' ? '/' : entry.path}`;
+    return `  <url><loc>${loc}</loc><changefreq>${entry.changefreq}</changefreq><priority>${entry.priority}</priority></url>`;
+  });
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+}
+
 export function seoResponse(request: Request): Response | null {
   const url = new URL(request.url);
   const pathname = url.pathname;
@@ -11,13 +21,10 @@ export function seoResponse(request: Request): Response | null {
     return new Response(null, { status: 405, headers: { Allow: 'GET, HEAD' } });
   }
   const robots = ROBOTS_TXT.replace(/^Sitemap: .*$/m, `Sitemap: ${url.origin}/sitemap.xml`);
-  // Serve a per-host sitemap so each domain lists only its own URLs and search
-  // engines never see the same content under multiple hosts (duplicate content).
-  let hostSitemap = SITEMAP_XML.replace(/<url>[\s\S]*?<\/url>/g, (block) =>
-    block.includes(`<loc>${url.origin}/`) ? block : '',
-  );
-  if (!hostSitemap.includes('<loc>')) hostSitemap = SITEMAP_XML;
-  return new Response(request.method === 'HEAD' ? null : sitemap ? hostSitemap : robots, {
+  // Generate the sitemap from the request origin so every host (prod domains and
+  // localhost alike) lists only its own URLs — no duplicate content across hosts.
+  const body = sitemap ? buildSitemap(url.origin) : robots;
+  return new Response(request.method === 'HEAD' ? null : body, {
     headers: {
       'Content-Type': sitemap ? 'application/xml; charset=utf-8' : 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=300',
