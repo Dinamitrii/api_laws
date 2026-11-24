@@ -8,10 +8,10 @@ export default function UsageBanner(){
   refresh();const timer=setInterval(refresh,15000);window.addEventListener('focus',refresh);
   return()=>{clearInterval(timer);window.removeEventListener('focus',refresh)};
  },[refresh]);
-  return <div className="usage-banner" style={{background:'#eaf4ed',borderBottom:'1px solid #c4d8ca',padding:'12px 20px',color:'#18332a',fontSize:15,lineHeight:1.6}}>
+  return <div className="usage-banner" style={{background:'#eaf4ed',borderBottom:'1px solid #c4d8ca',padding:'6px 12px',color:'#18332a',fontSize:13,lineHeight:1.35}}>
   <strong>{usage?.plan==='admin'?'Администратор · безплатен достъп без месечен лимит':usage?.plan==='paid'?'Платен достъп':'Безплатен план · 35 заявки на месец'}</strong>
   {usage?.plan==='free'&&<span role="status"> · Използвани: {usage.used}/35 · Остават: {usage.remaining}</span>}
   <span> · <a href="/refund-policy">Политика за възстановяване</a></span>
-  {(!usage||usage.plan==='free')&&<small style={{display:'block'}}>Лимитът е за профил и се подновява на 1-во число по българско време. Всяка изпратена справка, търсене, страница с резултати или пълен документ е 1 заявка, включително при неуспешен отговор. Прегледът на страниците не изразходва заявки.</small>}
+  {(!usage||usage.plan==='free')&&<small style={{display:'block',fontSize:10,lineHeight:1.25,marginTop:2}}>Лимитът е за профил и се подновява на 1-во число по българско време. Всяка изпратена справка, търсене, страница с резултати или пълен документ е 1 заявка, включително при неуспешен отговор. Прегледът на страниците не изразходва заявки.</small>}
  </div>;
 }
