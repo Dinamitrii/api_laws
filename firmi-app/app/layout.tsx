@@ -1,5 +1,6 @@
 import UsageBanner from '../components/usage-banner';
 import Link from 'next/link';
+import JsonLd from '../components/json-ld';
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
     
     <head>
   <GoogleAnalytics />
+  <JsonLd />
   <script
     id="poper-js-script"
     defer
