@@ -70,7 +70,7 @@ export async function accountGate(request: Request, env: AccountEnv, ctx: { wait
     );
   }
 
-  if (url.pathname.startsWith('/_next/static/') || ['/favicon.svg', '/favicon.ico'].includes(url.pathname)) return null;
+  if (url.pathname.startsWith('/_next/static/') || ['/favicon.svg', '/favicon.png', '/favicon.ico'].includes(url.pathname)) return null;
   if (url.pathname === '/api/stripe/webhook') return stripeWebhook(request, env);
   const auth = url.pathname.startsWith('/api/auth/');
   if (!env.AUTH_DB || !env.AUTH_PEPPER || !env.TURNSTILE_SECRET_KEY || !env.TURNSTILE_SITE_KEY) {
