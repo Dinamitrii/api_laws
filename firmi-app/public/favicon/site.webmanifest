@@ -1,11 +1,7 @@
 {
-  "name": "Фирмено досие",
-  "short_name": "Фирми",
-  "description": "Справки за фирми и попълване на документни шаблони.",
-  "lang": "bg",
-  "start_url": "/",
+  "name": "Фирми",
+  "short_name": "by Вестерос БГ ЕООД",
   "icons": [
-    "icons": [
     {
       "src": "/favicon/web-app-manifest-192x192.png",
       "sizes": "192x192",
@@ -18,15 +14,8 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-
-    {  "theme_color": "#176b51",
-        "background_color": "#ffffff",
-        "display": "standalone"
-
-        },
-
-
-
-
-
-
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

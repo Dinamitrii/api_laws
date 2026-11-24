@@ -1,5 +1,10 @@
+import UsageBanner from '../components/usage-banner';
+import Link from 'next/link';
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+import { GoogleAnalytics } from "@/components/google-analytics";
+
 
 export const metadata: Metadata = {
   title: "Фирмено досие — Фирми и документи",
@@ -28,7 +33,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bg">
-      <body className="antialiased">{children}<a href="/auth" style={{ position: "fixed", right: 18, bottom: 18, zIndex: 50, background: "#176b51", color: "white", padding: "10px 16px", borderRadius: 10 }}>Профил / Изход</a></body>
+    
+    
+    <head>
+  <GoogleAnalytics />
+  <script
+    id="poper-js-script"
+    defer
+    data-keep-script="true"
+    data-account-id="1491f0de70be08155c17ec34ba920623"
+    src="https://app.poper.ai/share/poper.js"
+  />
+</head>
+    
+      <body className="antialiased"><UsageBanner />{children}<Link href="/auth" style={{ position: "fixed", right: 18, bottom: 18, zIndex: 50, background: "#176b51", color: "white", padding: "10px 16px", borderRadius: 10 }}>Профил / Изход</Link></body>
     </html>
   );
 }

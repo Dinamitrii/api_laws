@@ -8,6 +8,7 @@ const { accountGate, passwordHash, passwordMatches } = await import('data:text/j
 function database() {
   const sqlite = new DatabaseSync(':memory:');
   sqlite.exec(fs.readFileSync('migrations/0001_accounts.sql', 'utf8'));
+  for (const name of ['0002_stripe', '0003_free_usage', '0004_eik_mcp', '0005_eik_shared_and_limit35']) sqlite.exec(fs.readFileSync('migrations/' + name + '.sql', 'utf8'));
   const db = {
     withSession() { return db; },
     prepare(sql) {

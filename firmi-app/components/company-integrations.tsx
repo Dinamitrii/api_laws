@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import MagistratCompanyCard, {type MagistratCompany} from './magistrat-company';
+import EikCompany from './eik-company';
 
 type Company = MagistratCompany;
 const scalar = (value: unknown) => typeof value === 'string' || typeof value === 'number' ? String(value) : '';
@@ -26,7 +27,7 @@ export function managerNames(value: unknown): string {
   // Register JSON may wrap the person record; ignore unrelated scalar identifiers.
   return Object.values(entry).filter(v => v && typeof v === 'object').map(managerNames).filter(Boolean).join(', ');
 }
-export default function CompanyIntegrations({ uic, onCompany }: { uic: string; onCompany: (fields: Record<string, string>, company: Company) => void }) {
+export default function CompanyIntegrations({ uic, onCompany }: { uic: string; onCompany: (fields: Record<string, string>, company: Company, source: string) => void }) {
   const revision = useRef(0);
   const [query, setQuery] = useState(uic), [vat, setVat] = useState(uic ? `BG${uic}` : '');
   const [company, setCompany] = useState<Company | null>(null), [result, setResult] = useState<VatResult | null>(null);
@@ -61,11 +62,11 @@ export default function CompanyIntegrations({ uic, onCompany }: { uic: string; o
         <p>ЕИК {company.uic} · {company.legalForm || 'Няма посочена правна форма'}</p>
         <p>{company.seat?.address || 'Няма публикуван адрес'}</p>
         {managerNames(company.managers) && <p>Управители: {managerNames(company.managers)}</p>}
-        <button onClick={() => onCompany({ uic: company.uic, name: company.name || '', legalForm: company.legalForm || '', address: company.seat?.address || '', manager: managerNames(company.managers), email: '', phone: '', nameLatin: scalar(company.nameLatin), deedStatus: scalar(company.deedStatus), subjectOfActivity: scalar(company.subjectOfActivity), nace: scalar(company.nace), capital: scalar(company.capital), capitalPaidIn: scalar(company.capitalPaidIn), wayOfRepresentation: scalar(company.wayOfRepresentation), partners: printable(company.partners), soleOwner: printable(company.soleOwner), actualOwners: printable(company.actualOwners), lastChangedAt: scalar(company.lastChangedAt) }, company)}>Зареди във фирмените данни</button>
+        <button onClick={() => onCompany({ uic: company.uic, name: company.name || '', legalForm: company.legalForm || '', address: company.seat?.address || '', manager: managerNames(company.managers), email: '', phone: '', nameLatin: scalar(company.nameLatin), deedStatus: scalar(company.deedStatus), subjectOfActivity: scalar(company.subjectOfActivity), nace: scalar(company.nace), capital: scalar(company.capital), capitalPaidIn: scalar(company.capitalPaidIn), wayOfRepresentation: scalar(company.wayOfRepresentation), partners: printable(company.partners), soleOwner: printable(company.soleOwner), actualOwners: printable(company.actualOwners), lastChangedAt: scalar(company.lastChangedAt) }, company, 'Магистрат')}>Зареди във фирмените данни</button>
         <p className="hint">Заменя текущите фирмени данни. Имейлът и телефонът се допълват ръчно.</p>
         <MagistratCompanyCard key={company.uic} company={company} />
       </div>}
-      <p className="hint"><a href="https://magistrat.bg/developers" target="_blank" rel="noreferrer">Магистрат ↗</a> · Безплатното API ниво е за оценка и нетърговска употреба.</p>
+      <p className="hint">Данните са от Магистрат.</p>
     </section>
     <section className="panel">
       <h2>VIES · проверка на ДДС номер</h2>
@@ -84,7 +85,8 @@ export default function CompanyIntegrations({ uic, onCompany }: { uic: string; o
         {!result.valid && <p>Този резултат не означава, че фирмата не съществува.</p>}
       </div>}
       <p className="hint">Предложеният BG + ЕИК трябва да се провери. VIES проверява валидността за сделки в ЕС. Наличието на име и адрес зависи от националния регистър.</p>
-      <p className="hint"><a href="https://ec.europa.eu/taxation_customs/vies/" target="_blank" rel="noreferrer">Официален VIES ↗</a></p>
+      <p className="hint">Данните са от VIES.</p>
     </section>
+    <EikCompany key={`eik-${uic}`} uic={uic} onCompany={(fields, company) => onCompany(fields, company as Company, 'eik.bg')} />
   </div>;
 }

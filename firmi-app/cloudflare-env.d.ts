@@ -7,4 +7,4 @@ declare namespace Cloudflare {
   }
 }
 
-declare namespace Cloudflare { interface Env { AUTH_DB?: D1Database; TURNSTILE_SITE_KEY?: string; TURNSTILE_SECRET_KEY?: string; AUTH_PEPPER?: string; } }
+declare namespace Cloudflare { interface Env { AUTH_DB?: D1Database; TURNSTILE_SITE_KEY?: string; TURNSTILE_SECRET_KEY?: string; AUTH_PEPPER?: string; ADMIN_USER_IDS?: string; } }

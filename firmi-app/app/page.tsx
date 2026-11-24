@@ -44,8 +44,8 @@ export default function Landing() {
       <main>
         <section className="hero"><p className="eyebrow">ФИРМЕНИ ДАННИ · ТВОИТЕ ДОКУМЕНТИ</p><h1>От фирмената справка<br/>до готовия документ.</h1><p className="lead">Намери фирмата, прегледай информацията и попълни своя шаблон. Събери работата с фирмени данни и документи на едно място.</p><Link className="cta" href="/app">Отвори Фирми →</Link><p className="sub">Необходим е профил. Входът и регистрацията са в приложението.</p></section>
         <section id="how" aria-labelledby="how-title"><h2 id="how-title">Три стъпки. Едно работно пространство.</h2><div className="cards">{features.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-        <section className="note"><h2>Информация с ясен източник</h2><p>Приложението използва интеграции с TheCompanyBook и Магистрат. Наличността на данните зависи от съответния източник и справка. Проверявай информацията преди използване в документи.</p><p>Фирмените справки и работното пространство са достъпни след вход в профил.</p></section>
-      </main><footer>Фирми · Predictorian — фирмени справки и шаблони за документи. © 2026 Vesteros BG Ltd.</footer>
+        <section className="note"><h2>Информация с ясен източник</h2><p>Приложението използва интеграции с TheCompanyBook, Магистрат и eik.bg. Наличността на данните зависи от съответния източник и справка. Проверявай информацията преди използване в документи.</p><p>Фирмените справки и работното пространство са достъпни след вход в профил.</p></section>
+      </main><footer>        Фирми · Predictorian — фирмени справки и шаблони за документи. © 2026 Vesteros BG Ltd. · Контакт: <a href="mailto:office@vesterosbg.online">office@vesterosbg.online</a></footer>
     </div>
   </div>;
 }

@@ -1,5 +1,6 @@
 import { env } from 'cloudflare:workers';
 import { magistratPath } from '../../../lib/magistrat-request';
+import { getSetting } from '../../../lib/settings';
 const json = (data: unknown, status = 200, extra: Record<string, string> = {}) => Response.json(data, { status, headers: { 'Cache-Control': 'no-store', ...extra } });
 export async function GET() { return json({ configured: Boolean(env.MAGISTRAT_API_KEY?.trim()) }); }
 export async function POST(request: Request) {
@@ -10,7 +11,7 @@ export async function POST(request: Request) {
     body = parsed as Record<string, unknown>;
     path = magistratPath(body);
   } catch (error) { return json({ error: error instanceof SyntaxError ? 'Невалиден JSON в заявката.' : (error as Error).message }, 400); }
-  const key = env.MAGISTRAT_API_KEY?.trim();
+  const key = (env.AUTH_DB ? await getSetting(env, env.AUTH_DB.withSession('first-primary'), 'MAGISTRAT_API_KEY') : env.MAGISTRAT_API_KEY)?.trim();
   if (!key) return json({ error: 'Липсва настроен ключ за Магистрат. Добави MAGISTRAT_API_KEY на сървъра.' }, 400);
   try {
     const response = await fetch('https://magistrat.bg' + path, { headers: { 'X-Api-Key': key, Accept: 'application/json' }, signal: AbortSignal.timeout(15000), redirect: 'manual' });

@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { getSetting } from "../../../lib/settings";
 
 export async function GET(){
  return Response.json({configured: Boolean(env.COMPANYBOOK_API_KEY?.trim())},{headers:{"Cache-Control":"no-store"}});
@@ -6,7 +7,7 @@ export async function GET(){
 
 export async function POST(request:Request){
  const json=(data:object,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
- try{const parsed=await request.json();if(!parsed||typeof parsed!=='object')return json({error:'Невалидна заявка.'},400);const b=parsed as Record<string,unknown>;const key=(typeof b.key==='string'?b.key.trim():'')||env.COMPANYBOOK_API_KEY?.trim();if(!key)return json({error:'Липсва API ключ.'},400);let path:string;
+ try{const parsed=await request.json();if(!parsed||typeof parsed!=='object')return json({error:'Невалидна заявка.'},400);const b=parsed as Record<string,unknown>;const db=env.AUTH_DB?.withSession('first-primary');const key=(typeof b.key==='string'?b.key.trim():'')||(db?await getSetting(env,db,'COMPANYBOOK_API_KEY'):env.COMPANYBOOK_API_KEY?.trim());if(!key)return json({error:'Липсва API ключ.'},400);let path:string;
  if(b.action==='search'){if(typeof b.query!=='string'||b.query.trim().length<3||b.query.length>200)return json({error:'Въведи между 3 и 200 символа.'},400);const q=b.query.trim();const p=new URLSearchParams({limit:'20',offset:'0'});p.set(/^(BG)?\d{9,13}$/i.test(q)?'uic':'name',q.replace(/^BG(?=\d)/i,''));path='/api/v2/companies/search?'+p}
  // Search returns short rows; every company detail request fetches full data.
  else if(b.action==='detail'&&typeof b.uic==='string'&&/^(BG)?\d{9,13}$/i.test(b.uic))path='/api/companies/'+encodeURIComponent(b.uic)+'?with_data=true';else return json({error:'Невалидна заявка.'},400);

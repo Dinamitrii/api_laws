@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="600" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: Shield with stylized W / pillars -->
+  <g transform="translate(500, 220)">
+    <!-- Shield outline -->
+    <path d="M 0 120 C -40 100 -90 60 -95 10 L -95 -40 L 0 -70 L 95 -40 L 95 10 C 95 60 40 100 0 120 Z" 
+          fill="none" stroke="#1A1A1A" stroke-width="14" stroke-linejoin="round"/>
+    <!-- Inner W / pillars -->
+    <path d="M -55 5 L -35 25 L -35 85 M -15 10 L -15 100 M 0 0 L 0 110 M 15 10 L 15 100 M 35 25 L 35 85 L 55 5" 
+          fill="none" stroke="#1A1A1A" stroke-width="12" stroke-linecap="square" stroke-linejoin="miter"/>
+    <!-- Top cross lines -->
+    <path d="M -95 -40 L -15 10 M 95 -40 L 15 10" fill="none" stroke="#1A1A1A" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <!-- Text: ВЕСТЕРОС БГ -->
+  <text x="500" y="400" font-family="Montserrat, Inter, Arial Black, sans-serif" font-weight="800" font-size="72" fill="#1A1A1A" text-anchor="middle" letter-spacing="2">ВЕСТЕРОС БГ</text>
+  <!-- Text: ЕООД -->
+  <text x="500" y="450" font-family="Montserrat, Inter, sans-serif" font-weight="300" font-size="42" fill="#1A1A1A" text-anchor="middle" letter-spacing="12">ЕООД</text>
+</svg>

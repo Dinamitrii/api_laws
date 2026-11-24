@@ -7,7 +7,7 @@ export function DataValue({ value }: { value: unknown }) {
  if (typeof value === 'boolean') return <span>{value ? 'Да' : 'Не'}</span>;
  if (typeof value === 'string' || typeof value === 'number') {
    const text = String(value);
-   return /^https?:\/\//i.test(text) ? <a href={text} target="_blank" rel="noreferrer">Отвори източника ↗</a> : <span className="data-text">{text}</span>;
+   return <span className="data-text">{text}</span>;
  }
  if (Array.isArray(value)) return value.length ? <div className="data-list">{value.map((item, index) => <div className="data-item" key={index}><DataValue value={item} /></div>)}</div> : <span className="hint">Няма публикувани записи</span>;
  if (typeof value === 'object') return <dl className="data-fields">{Object.entries(value).map(([key, item]) => <div key={key}><dt>{magistratLabels[key] || key}</dt><dd><DataValue value={item} /></dd></div>)}</dl>;
