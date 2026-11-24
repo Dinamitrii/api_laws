@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '../lib/firmi-seo-manifest';
+import { FAQ } from '../lib/faq';
 
 export const metadata: Metadata = {
   title: 'Фирми — фирмени справки и документи | Predictorian',
@@ -36,6 +37,7 @@ export default function Landing() {
       .firmi-landing .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0 65px}
       .firmi-landing article{background:white;border:1px solid #dce3d9;border-radius:14px;padding:27px}.firmi-landing article span{font:14px monospace;color:#315f46}.firmi-landing h3{font-size:21px;margin:25px 0 14px}.firmi-landing article p{font-size:16px;line-height:1.8;color:#43584d}
       .firmi-landing .note{border-top:1px solid #dce3d9;padding:28px 0 50px;max-width:760px;font-size:16px;line-height:1.8;color:#43584d}
+      .firmi-landing .faq{margin:10px 0 40px;max-width:860px}.firmi-landing .faq>div{border-top:1px solid #dce3d9;padding:16px 0}.firmi-landing .faq h3{margin:0 0 8px}.firmi-landing .faq p{margin:0;color:#43584d}
       .firmi-landing footer{border-top:1px solid #dce3d9;padding:26px 0 75px;font-size:13px;color:#4b6254}
       @media(max-width:700px){.firmi-landing .hero{padding:55px 0}.firmi-landing .cards{grid-template-columns:1fr}.firmi-landing nav{gap:14px}.firmi-landing nav a{font-size:13px}.firmi-landing .wrap{padding:0 20px}}
     `}</style>
@@ -44,6 +46,7 @@ export default function Landing() {
       <main>
         <section className="hero"><p className="eyebrow">ФИРМЕНИ ДАННИ · ТВОИТЕ ДОКУМЕНТИ</p><h1>От фирмената справка<br/>до готовия документ.</h1><p className="lead">Намери фирмата, прегледай информацията и попълни своя шаблон. Събери работата с фирмени данни и документи на едно място.</p><Link className="cta" href="/app">Отвори Фирми →</Link><p className="sub">Необходим е профил. Входът и регистрацията са в приложението.</p></section>
         <section id="how" aria-labelledby="how-title"><h2 id="how-title">Три стъпки. Едно работно пространство.</h2><div className="cards">{features.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+        <section id="faq" className="faq" aria-labelledby="faq-title"><h2 id="faq-title">Чсто задавани въпроси</h2>{FAQ.map((f)=><div key={f.q}><h3>{f.q}</h3><p>{f.a}</p></div>)}</section>
         <section className="note"><h2>Информация с ясен източник</h2><p>Приложението използва интеграции с TheCompanyBook, Магистрат и eik.bg. Наличността на данните зависи от съответния източник и справка. Проверявай информацията преди използване в документи.</p><p>Фирмените справки и работното пространство са достъпни след вход в профил.</p></section>
       </main><footer>        Фирми · Predictorian — фирмени справки и шаблони за документи. © 2026 Vesteros BG Ltd. · Контакт: <a href="mailto:office@vesterosbg.online">office@vesterosbg.online</a></footer>
     </div>
