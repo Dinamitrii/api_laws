@@ -50,7 +50,7 @@ export default function RootLayout({
   />
 </head>
     
-      <body className="antialiased"><UsageBanner />{children}<Link href="/auth" style={{ position: "fixed", right: 18, bottom: 18, zIndex: 50, background: "#176b51", color: "white", padding: "10px 16px", borderRadius: 10 }}>Профил / Изход</Link></body>
+      <body className="antialiased"><UsageBanner />{children}<Link href="/auth" style={{ position: "fixed", left: "50%", bottom: 18, transform: "translateX(-50%)", zIndex: 50, background: "#176b51", color: "white", padding: "10px 16px", borderRadius: 10 }}>Профил / Изход</Link></body>
     </html>
   );
 }
