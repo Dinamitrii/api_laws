@@ -39,6 +39,8 @@ export default function RootLayout({
     <head>
   <GoogleAnalytics />
   <JsonLd />
+  <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+  <link rel="alternate" type="application/json" title="ai-catalog" href="/ai-catalog.json" />
   <script
     id="poper-js-script"
     defer

@@ -138,6 +138,11 @@ const robots = [
   'Allow: /',
   ...blockedPaths.slice().sort().map((route) => `Disallow: ${route}`),
   '',
+  '# AI agent and crawler discovery:',
+  '#   /llms.txt — overview for language models and AI agents',
+  '#   /ai-catalog.json — machine-readable catalog of public resources',
+  '#   /.well-known/ai-catalog.json — same catalog at a well-known path',
+  '',
   `Sitemap: ${siteUrl}/sitemap.xml`,
   '',
 ].join('\n');
