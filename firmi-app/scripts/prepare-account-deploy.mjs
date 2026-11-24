@@ -29,15 +29,11 @@ const siteUrls = (Array.isArray(seoConfig.siteUrls) && seoConfig.siteUrls.length
   const parsed = new URL(value);
   return parsed.hostname;
 });
-// Extra hostnames (e.g. www.*) that should route to the Worker but stay out of
-// the sitemap, which is generated from siteUrls only.
-const routeSites = (Array.isArray(seoConfig.routeSites) ? seoConfig.routeSites : []).map((value) => new URL(value).hostname);
-const routeDomains = [...new Set([...siteUrls, ...routeSites])];
 config.routes = [
   // Drop any earlier custom domain (e.g. from a stale dist/) so only the project's
   // published domains remain.
   ...(config.routes ?? []).filter((route) => route?.custom_domain !== true),
-  ...routeDomains.map((domain) => ({ pattern: domain, custom_domain: true })),
+  ...siteUrls.map((domain) => ({ pattern: domain, custom_domain: true })),
 ];
 config.vars = { ...config.vars, TURNSTILE_SITE_KEY: settings.siteKey };
 config.d1_databases = (config.d1_databases ?? []).filter(item => item.binding !== 'AUTH_DB');
