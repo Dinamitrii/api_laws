@@ -8,7 +8,7 @@ export default function UsageBanner(){
   refresh();const timer=setInterval(refresh,15000);window.addEventListener('focus',refresh);
   return()=>{clearInterval(timer);window.removeEventListener('focus',refresh)};
  },[refresh]);
-  return <div className="usage-banner" style={{background:'#eaf4ed',borderBottom:'1px solid #c4d8ca',padding:'2px 10px',color:'#18332a',fontSize:13,lineHeight:1.2}}>
+  return <div className="usage-banner" style={{background:'#eaf4ed',borderBottom:'1px solid #c4d8ca',padding:'6px 12px',color:'#18332a',fontSize:13,lineHeight:1.35}}>
   <strong>{usage?.plan==='admin'?'Администратор · безплатен достъп без месечен лимит':usage?.plan==='paid'?'Платен достъп':'Безплатен план · 35 заявки на месец'}</strong>
   {usage?.plan==='free'&&<span role="status"> · Използвани: {usage.used}/35 · Остават: {usage.remaining}</span>}
   <span> · <a href="/refund-policy">Политика за възстановяване</a></span>
