@@ -4,6 +4,10 @@
     "https://firmi.online",
     "https://predictorian.online"
   ],
+  "routeSites": [
+    "https://www.firmi.online",
+    "https://www.predictorian.online"
+  ],
   "paths": [
     "/",
     "/disclosure"
