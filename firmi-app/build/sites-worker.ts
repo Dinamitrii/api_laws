@@ -12,6 +12,7 @@ export default {
     }).ASSETS;
     if (assets && (
       pathname.startsWith("/_next/static/") ||
+      pathname.startsWith("/brand/") ||
       pathname === "/favicon.svg" ||
       pathname === "/favicon.ico"
     )) {
