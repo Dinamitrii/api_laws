@@ -92,7 +92,7 @@ export default function DisclosurePage() {
         <p><strong>Забележка:</strong> Възстановяването на сумата <strong>не означава автоматично възстановяване на достъп до акаунт</strong>, ако сте загубили паролата. Плащането и акаунтът са отделни неща.</p>
 
         <h2>6. Контакт за въпроси</h2>
-        <p>За въпроси относно тези условия, пишете на: <a href="mailto:vesterosbg@gmail.com">vesterosbg@gmail.com</a></p>
+        <p>За въпроси относно тези условия, пишете на: <a href="mailto:office@vesterosbg.online">office@vesterosbg.online</a></p>
         <p>Доставчик: „Вестерос БГ“ ЕООД, ЕИК: 206244287, България, София 1172, жк. „Дианабад“, бл. 42, ет. 1, ап. 4</p>
 
         <footer>
